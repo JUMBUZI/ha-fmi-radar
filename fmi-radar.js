@@ -199,63 +199,73 @@ class FmiRadarEditor extends LitElement {
       <div class="card-config">
         <div>
           <p>Voit käyttää Ilmatieteen laitoksen kohteen ID:n tilalla myös arvoja <b>suomi1h</b>, <b>suomi</b>, <b>etela-suomi</b>, <b>keski-suomi</b> tai <b>pohjois-suomi</b> saadaksesi laajemman tutkakuvan.</p>
-          <paper-input
+          <ha-textfield
             label="Ilmatieteen laitoksen kohteen ID"
+            style="width:100%"
             .value="${this.config.station_id}"
             .configValue="${"station_id"}"
             @focusout="${this.valueChanged}"
-          ></paper-input>
-          <paper-input
+          ></ha-textfield>
+          <ha-textfield
             label="Tutkakuvien siirtymäaika millisekunteina"
+            style="width:100%"
             type="number"
             .value="${this.config.speed_ms}"
             .configValue="${"speed_ms"}"
             @focusout="${this.valueChanged}"
-          ></paper-input>
-          <paper-input
+          ></ha-textfield>
+          <ha-textfield
             label="tutkakuvan päälle tulevan päivämäärän ja kellonajan vaakasuuntainen sijainti (vasen tai oikea)"
+            style="width:100%"
             .value="${this.config.time_horizontal_pos}"
             .configValue="${"time_horizontal_pos"}"
             @focusout="${this.valueChanged}"
-          ></paper-input>
-          <paper-input
+          ></ha-textfield>
+          <ha-textfield
             label="Tutkakuvan päälle tulevan päivämäärän ja kellonajan pystysuuntainen sijainti (ylä tai ala)"
+            style="width:100%"
             .value="${this.config.time_vertical_pos}"
             .configValue="${"time_vertical_pos"}"
             @focusout="${this.valueChanged}"
-          ></paper-input>
-          <paper-input
+          ></ha-textfield>
+          <ha-textfield
             label="Tutkakuvan päälle tulevan päivämäärän ja kellonajan fontin paksuus"
+            style="width:100%"
             type="number"
             .value="${this.config.time_font_weight}"
             .configValue="${"time_font_weight"}"
             @focusout="${this.valueChanged}"
-          ></paper-input>
-          <paper-input
+          ></ha-textfield>
+          <ha-textfield
             label="Tutkakuvan päälle tulevan päivämäärän ja kellonajan fontin koko (em)"
+            style="width:100%"
             type="number"
+            step=".1"
             .value="${this.config.time_font_size}"
             .configValue="${"time_font_size"}"
             @focusout="${this.valueChanged}"
-          ></paper-input>
-          <paper-input
+          ></ha-textfield>
+          <ha-textfield
             label="Tutkakuvan päälle tulevan päivämäärän ja kellonajan fontin väri"
+            style="width:100%"
             .value="${this.config.time_font_color}"
             .configValue="${"time_font_color"}"
             @focusout="${this.valueChanged}"
-          ></paper-input>
-          <paper-input
+          ></ha-textfield>
+          <ha-textfield
             label="Kellonajan etuliite tutkakuvan päälle tulevassa päivämäärän ja kellonajan tekstirivissä"
+            style="width:100%"
             .value="${this.config.time_prefix}"
             .configValue="${"time_prefix"}"
             @focusout="${this.valueChanged}"
-          ></paper-input>
-          <paper-input
+          ></ha-textfield>
+          <ha-textfield
             label="Kuvan päälle lisättävät elementit JSON-muodossa"
-            .value="${this.config.overlay}"
+            style="width:100%"
+            .value="${this.config.overlay || ''}"
             .configValue="${"overlay"}"
             @focusout="${this.valueChanged}"
-          ></paper-input>
+          ></ha-textfield>
         </div>
       </div>
     `;
