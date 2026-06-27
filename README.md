@@ -5,7 +5,7 @@ Home Assistant -kortti, joka näyttää Ilmatieteen laitoksen sadetutkan ja sala
 
 ## Asennus
 ### HACS
-Lisää HACSin frontend-puolelle mukautettu repo <b>kosmosnautti/ha-fmi-radar</b> kategoriaan <b>lovelace</b> ja asenna HACSista sen jälkeen "Ilmatieteen laitoksen sadetutka- ja salamahavainnot".
+Lisää HACSin frontend-puolelle mukautettu repo <b>JUMBUZI/ha-fmi-radar</b> kategoriaan <b>Dashboard</b> ja asenna HACSista sen jälkeen "Ilmatieteen laitoksen sadetutka- ja salamahavainnot".
 ### Käsin
 1. Kopioi <b>fmi-radar.js</b> -tiedosto Home Assistantin /config/www -polkuun
 2. Avaa Home Assistantin <b>asetukset</b> ja sen alta <b>kojelaudat</b>
@@ -66,3 +66,6 @@ Yllä olevat esimerkit yhdistettyinä ja siirrettyinä:
 ```
 {"ympyrä":{"css":"width:10%;height:8%;top:35%;left:45%;border:2px solid red;border-radius:50%;"},"neliö":{"teksti":"Koti","css":"width:10%;height:8%;bottom:35%;left:45%;border:2px solid blue;color:black;text-align:center;line-height:50px;"}}
 ```
+
+### Kuvien lataus toisesta osoitteesta
+Jos haluat ladata tutkakuvat toisesta osoitteesta, määritä `custom_host`. Esim. `fmi-proxy.example.com`
