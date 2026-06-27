@@ -15,17 +15,17 @@ class FmiRadar extends HTMLElement {
             this.jsonUrls = [];
             this.radarImages = [];
 
-            const host = this.config.custom_host ?? 'cdn.fmi.fi'
+            this.host = this.config.custom_host ?? 'cdn.fmi.fi'
 
             if (String(this.config.station_id).includes('suomi')) {
-                if (this.config.station_id == 'suomi1h') {
-                    this.jsonUrls.push(`https://${ host }/apps/list-finland-radar-images/index.php?product-id=${ this.config.station_id }&isforecast=false`);
-                    this.jsonUrls.push(`https://${ host }/apps/list-finland-radar-images/index.php?product-id=${ this.config.station_id }&isforecast=true`);
+                if (this.config.station_id === 'suomi1h') {
+                    this.jsonUrls.push(`https://${ this.host }/apps/list-finland-radar-images/index.php?product-id=${ this.config.station_id }&isforecast=false`);
+                    this.jsonUrls.push(`https://${ this.host }/apps/list-finland-radar-images/index.php?product-id=${ this.config.station_id }&isforecast=true`);
                 } else {
-                    this.jsonUrls.push(`https://${ host }/apps/list-finland-radar-images/index.php?product-id=${ this.config.station_id }&flash=true`);
+                    this.jsonUrls.push(`https://${ this.host }/apps/list-finland-radar-images/index.php?product-id=${ this.config.station_id }&flash=true`);
                 }
             }else {
-                this.jsonUrls.push(`https://${ host }/apps/list-local-weather-radar-images/index.php?lang=fi&station=${ this.config.station_id }&timezone=UTC`);
+                this.jsonUrls.push(`https://${ this.host }/apps/list-local-weather-radar-images/index.php?lang=fi&station=${ this.config.station_id }&timezone=UTC`);
             }
 
             this.getImages(0, this.jsonUrls.length);
@@ -45,7 +45,7 @@ class FmiRadar extends HTMLElement {
             if(req.readyState === XMLHttpRequest.DONE && req.status === 200) {
                 try {
                     let jsonData = JSON.parse(req.responseText);
-                    this.radarImages = [...this.radarImages, ...jsonData.images];
+                    this.radarImages = [...this.radarImages, ...jsonData.images.map(img => ({ url: img.url.replace('cdn.fmi.fi', this.host), ...img }))];
                     this.getImages(i + 1, len);
                 } catch(e) {
                     throw new Error('Ilmatieteen laitokselta vastaanotettu JSON on virheellinen: ' + e);
