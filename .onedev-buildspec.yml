@@ -1,0 +1,19 @@
+version: 47
+jobs:
+- name: Mirror sync
+  steps:
+  - type: PushRepository
+    name: Push to GitHub
+    remoteUrl: https://github.com/JUMBUZI/ha-fmi-radar.git
+    passwordSecret: Github sync token
+    force: false
+    condition: SUCCESSFUL
+    optional: false
+  triggers:
+  - type: BranchUpdateTrigger
+    userMatch: anyone
+    projects: Public/ha-fmi-radar
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
