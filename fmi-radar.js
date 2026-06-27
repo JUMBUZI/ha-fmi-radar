@@ -45,7 +45,7 @@ class FmiRadar extends HTMLElement {
             if(req.readyState === XMLHttpRequest.DONE && req.status === 200) {
                 try {
                     let jsonData = JSON.parse(req.responseText);
-                    this.radarImages = [...this.radarImages, ...jsonData.images.map(img => ({ url: img.url.replace('cdn.fmi.fi', this.host), ...img }))];
+                    this.radarImages = [...this.radarImages, ...jsonData.images.map(img => ({ ...img, url: img.url.replace('cdn.fmi.fi', this.host) }))];
                     this.getImages(i + 1, len);
                 } catch(e) {
                     throw new Error('Ilmatieteen laitokselta vastaanotettu JSON on virheellinen: ' + e);
