@@ -81,7 +81,6 @@ class FmiRadar extends HTMLElement {
             while (this.content.firstChild) {
                 this.content.removeChild(this.content.firstChild)
             }
-            delete this.content
         }
 
         this.translation = { 'ylä': 'top', 'ala': 'bottom', 'vasen': 'left', 'oikea': 'right' }
@@ -199,8 +198,10 @@ class FmiRadar extends HTMLElement {
         this.config = config
 
         if (this.slideshow_id) {
-            clearTimeout(this.image_refresh_id)
             clearTimeout(this.slideshow_id)
+        }
+        if (this.image_refresh_id) {
+            clearTimeout(this.image_refresh_id)
         }
         if (this.content) {
             while (this.content.firstChild) {
@@ -231,10 +232,7 @@ class FmiRadar extends HTMLElement {
 
 class FmiRadarEditor extends LitElement {
     static get properties() {
-        return {
-            hass: {},
-            config: {},
-        }
+        return { hass: {}, config: {} }
     }
 
     setConfig(config) {
@@ -343,6 +341,20 @@ class FmiRadarEditor extends LitElement {
                         style="width:100%"
                         .value="${this.config.overlay || ''}"
                         .configValue="${"overlay"}"
+                        @focusout="${this.valueChanged}"
+                    ></ha-input>
+                    <ha-input
+                        label="Kunka monen sekunnin välein ladataan uudet kuvat"
+                        style="width:100%"
+                        .value="${this.config.image_refresh_interval || ''}"
+                        .configValue="${"image_refresh_interval"}"
+                        @focusout="${this.valueChanged}"
+                    ></ha-input>
+                    <ha-input
+                        label="Vaihtoehtoinen FMI osoite (esim. fmi-proxy.example.com)"
+                        style="width:100%"
+                        .value="${this.config.custom_host || ''}"
+                        .configValue="${"custom_host"}"
                         @focusout="${this.valueChanged}"
                     ></ha-input>
                 </div>
