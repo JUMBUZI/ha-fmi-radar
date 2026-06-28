@@ -346,6 +346,8 @@ class FmiRadarEditor extends LitElement {
                     <ha-input
                         label="Kunka monen sekunnin välein ladataan uudet kuvat"
                         style="width:100%"
+                        type="number"
+                        step="1"
                         .value="${this.config.image_refresh_interval || ''}"
                         .configValue="${"image_refresh_interval"}"
                         @focusout="${this.valueChanged}"
